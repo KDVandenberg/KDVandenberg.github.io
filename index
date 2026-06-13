@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin Vandenberg | Municipal Finance &amp; Public Leadership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1B2A4A;
+      --slate:   #2E4A7A;
+      --gold:    #C9A84C;
+      --gold-lt: #E8D08A;
+      --fog:     #F0F2F5;
+      --white:   #FFFFFF;
+      --text:    #1A1F2E;
+      --muted:   #6B7590;
+      --border:  #D6DAE6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(27, 42, 74, 0.97);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #243860 60%, #1a3060 100%);
+      display: flex;
+      align-items: center;
+      padding: 80px 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(201,168,76,0.04) 80px,
+        rgba(201,168,76,0.04) 81px
+      );
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201,168,76,0.25);
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-gold:hover { background: var(--gold-lt); }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: var(--navy);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    #experience { background: var(--fog); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--border));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.45rem;
+      top: 8px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--fog);
+    }
+
+    .timeline-date {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.65;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(46,74,122,0.1);
+      color: var(--slate);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-bar-wrap {
+      margin-bottom: 0.9rem;
+    }
+
+    .skill-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-bar-label span:last-child { color: var(--muted); font-size: 0.75rem; }
+
+    .skill-bar-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--slate), var(--gold));
+      border-radius: 2px;
+      width: 0;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── CIVIC ── */
+    #civic { background: var(--fog); }
+
+    .civic-card {
+      background: var(--white);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.2rem;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 2px 12px rgba(27,42,74,0.06);
+    }
+
+    .civic-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .civic-card .org {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.6rem;
+    }
+
+    .civic-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .edu-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+
+    .edu-info .school {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-info p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--navy);
+    }
+
+    #contact h2 { color: var(--white); }
+    #contact .section-label { color: var(--gold); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-text {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--gold); }
+
+    .contact-link-icon {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .form-field label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      padding: 0.65rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus { border-color: var(--gold); }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-success {
+      display: none;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold-lt);
+      padding: 0.75rem 1rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111928;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item { opacity: 1; transform: none; transition: none; }
+      .skill-bar-fill { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-brand">Kevin Vandenberg</span>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#civic">Civic</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Municipal Finance · Public Leadership · North Texas</p>
+      <h1>Kevin Vandenberg,<br />MPAcc</h1>
+      <p class="hero-subtitle">Budget Analyst II at the City of Fort Worth and elected Council Member &amp; Mayor Pro Tem for the City of Reno, Texas — bridging governmental accounting expertise with hands-on civic leadership.</p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">8+</span>
+          <span class="stat-label">Years Municipal Finance</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">GFOA</span>
+          <span class="stat-label">Active Member</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">GASB</span>
+          <span class="stat-label">GAAP Specialist</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">MPAcc</span>
+          <span class="stat-label">UT Arlington</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-gold">Get in Touch</a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label">Career</p>
+      <h2>Professional Experience</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <p class="timeline-date">Current</p>
+          <p class="timeline-role">Budget Analyst II</p>
+          <p class="timeline-org">City of Fort Worth, Texas</p>
+          <p class="timeline-desc">Manage a large multi-fund budget portfolio across City departments, providing analysis, forecasting, and reporting in compliance with GAAP and GASB standards. Developed self-taught VBA automation that significantly reduced manual labor in budget processes. Supports annual budget preparation, mid-year amendments, and performance monitoring for one of Texas's largest cities.</p>
+          <div class="timeline-tags">
+            <span class="tag">GASB/GAAP</span>
+            <span class="tag">Multi-Fund Budgeting</span>
+            <span class="tag">VBA Automation</span>
+            <span class="tag">Financial Forecasting</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <p class="timeline-date">Elected · Current</p>
+          <p class="timeline-role">Council Member (Place 1) &amp; Mayor Pro Tem</p>
+          <p class="timeline-org">City of Reno, Texas</p>
+          <p class="timeline-desc">Re-elected to serve the City of Reno, a Type A General Law city. As Mayor Pro Tem, assists in presiding over council sessions, evaluating policy proposals, and overseeing city operations. Handles matters including municipal personnel, infrastructure planning, grant oversight, and intergovernmental coordination.</p>
+          <div class="timeline-tags">
+            <span class="tag">Municipal Governance</span>
+            <span class="tag">Policy Evaluation</span>
+            <span class="tag">Texas Local Gov</span>
+            <span class="tag">Public Finance</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label">Expertise</p>
+      <h2>Core Competencies</h2>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Governmental Accounting</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>GASB Standards</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Fund Accounting</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>GAAP Compliance</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Debt Financing (TANs/Bonds)</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Budget &amp; Analysis</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Multi-Fund Portfolio Mgmt</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Financial Forecasting</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Capital Planning</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="84"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Cost-Benefit Analysis</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Technology</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>VBA / Excel Automation</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Microsoft Excel</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Financial ERP Systems</span><span>Proficient</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>JavaScript / Web Dev</span><span>Learning</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="30"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Leadership &amp; Governance</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Municipal Policy</span><span>Expert</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Intergovernmental Relations</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Stakeholder Communication</span><span>Advanced</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Grant Oversight</span><span>Proficient</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIVIC -->
+  <section id="civic">
+    <div class="section-inner">
+      <p class="section-label">Community</p>
+      <h2>Civic Engagement</h2>
+
+      <div class="civic-card">
+        <h3>Mayor Pro Tem &amp; Council Member, Place 1</h3>
+        <p class="org">City of Reno, Texas · Elected</p>
+        <p>Re-elected to the Reno City Council and appointed Mayor Pro Tem. Leads agenda review, policy deliberation, and municipal oversight for a Type A General Law city. Handles infrastructure planning evaluation, personnel matters, commission governance, and fiscal policy — bringing professional finance expertise directly into the civic arena.</p>
+      </div>
+
+      <div class="civic-card">
+        <h3>Government Finance Officers Association (GFOA)</h3>
+        <p class="org">Active Member</p>
+        <p>Engaged member of GFOA, staying current on best practices in governmental accounting, budgeting, and financial reporting standards. Leverages GFOA resources to strengthen municipal finance operations in both professional and elected roles.</p>
+      </div>
+
+      <div class="civic-card">
+        <h3>North Texas Community Roots</h3>
+        <p class="org">Parker County · Wise County · Tarrant County</p>
+        <p>Deep personal and professional ties to North Texas. Active interest in the development, governance, and community wellbeing of smaller municipalities and rural areas across the region — reflecting a commitment to public service that extends beyond the office.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <p class="section-label">Academic Background</p>
+      <h2>Education</h2>
+
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-info">
+          <h3>Master of Professional Accounting (MPAcc)</h3>
+          <p class="school">University of Texas at Arlington</p>
+          <p>Graduate program with focus on accounting theory, governmental accounting, auditing, and financial reporting. Provides the academic foundation underlying day-to-day GAAP/GASB application in municipal finance.</p>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-icon">📋</div>
+        <div class="edu-info">
+          <h3>Continuing Professional Education</h3>
+          <p class="school">GFOA · Texas Municipal League · Ongoing</p>
+          <p>Regular participation in governmental finance training, Texas local government law updates, and public administration development programs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Let's Connect</p>
+      <h2>Get in Touch</h2>
+
+      <div class="contact-grid">
+        <div>
+          <p class="contact-text">Whether you're exploring a professional opportunity, looking to connect on municipal finance topics, or interested in North Texas civic matters — I'd be glad to hear from you.</p>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+              <span class="contact-link-icon">in</span>
+              LinkedIn Profile
+            </a>
+            <a href="mailto:your@email.com" class="contact-link">
+              <span class="contact-link-icon">✉</span>
+              your@email.com
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">📍</span>
+              North Texas Area
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-area">
+          <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" id="f-name" placeholder="Jane Smith" />
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-field">
+            <label>Message</label>
+            <textarea id="f-message" rows="4" placeholder="What's on your mind?"></textarea>
+          </div>
+          <div class="form-success" id="form-success">✓ Message sent — I'll be in touch soon.</div>
+          <button class="btn btn-gold" onclick="handleSubmit()">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Kevin Vandenberg, MPAcc · City of Fort Worth · City of Reno, Texas</p>
+  </footer>
+
+  <script>
+    // ── Active nav link on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Timeline reveal on scroll ──
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    timelineItems.forEach(item => timelineObserver.observe(item));
+
+    // ── Skill bar animation ──
+    const bars = document.querySelectorAll('.skill-bar-fill');
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const w = entry.target.getAttribute('data-width');
+          entry.target.style.width = w + '%';
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    bars.forEach(bar => barObserver.observe(bar));
+
+    // ── Contact form (demo) ──
+    function handleSubmit() {
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const message = document.getElementById('f-message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // In a real site you'd POST to a service like Formspree or EmailJS here.
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-message').value = '';
+    }
+  </script>
+
+</body>
+</html>

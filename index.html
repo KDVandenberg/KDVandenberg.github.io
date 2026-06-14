@@ -875,21 +875,27 @@
 
     // ── Contact form (demo) ──
     function handleSubmit() {
-      const name = document.getElementById('f-name').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const message = document.getElementById('f-message').value.trim();
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const message = document.getElementById('f-message').value.trim();
 
-      if (!name || !email || !message) {
-        alert('Please fill in all fields.');
-        return;
-      }
+  if (!name || !email || !message) {
+    alert('Please fill in all fields.');
+    return;
+  }
 
-      // In a real site you'd POST to a service like Formspree or EmailJS here.
-      document.getElementById('form-success').style.display = 'block';
-      document.getElementById('f-name').value = '';
-      document.getElementById('f-email').value = '';
-      document.getElementById('f-message').value = '';
-    }
+  fetch('https://formspree.io/f/xykallqz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, message })
+  })
+  .then(() => {
+    document.getElementById('form-success').style.display = 'block';
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-message').value = '';
+  });
+}
   </script>
 
 </body>
